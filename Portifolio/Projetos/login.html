@@ -1,0 +1,90 @@
+<!-- PÁGINA DE LOGIN -->
+<section id="login">
+  <div class="login-box">
+    <h2>Login</h2>
+    <input type="text" placeholder="Email" />
+    <input type="password" placeholder="Senha" />
+    <button>Entrar</button>
+  </div>
+</section>
+
+<style>
+  :root {
+    --bg-light: #f0f0f0;
+    --bg-dark: #1e1e1e;
+    --box-bg-light: #ffffff;
+    --box-bg-dark: #2c2c2c;
+    --text-color-light: #000;
+    --text-color-dark: #fff;
+    --primary: #4f46e5;
+    --primary-hover: #4338ca;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Inter", sans-serif;
+    background: var(--bg-light);
+    color: var(--text-color-light);
+    transition: all 0.3s ease;
+  }
+
+  #login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 1rem;
+    background: linear-gradient(135deg, #d1d5db, #f3f4f6);
+  }
+
+  .login-box {
+    background: var(--box-bg-light);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .login-box h2 {
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    text-align: center;
+  }
+
+  .login-box input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+  }
+
+  .login-box button {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .login-box button:hover {
+    background-color: var(--primary-hover);
+  }
+
+  /* Responsivo */
+  @media (max-width: 480px) {
+    .login-box {
+      padding: 1.5rem;
+    }
+
+    .login-box h2 {
+      font-size: 1.5rem;
+    }
+  }
+</style>

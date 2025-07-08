@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Relógio Digital</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #0f172a;
+      color: #f8fafc;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    #clock {
+      background-color: #1e293b;
+      padding: 3rem 4rem;
+      border-radius: 16px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      font-size: 3rem;
+      text-align: center;
+      letter-spacing: 2px;
+      min-width: 280px;
+    }
+
+    @media (max-width: 480px) {
+      #clock {
+        font-size: 2rem;
+        padding: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="clock">
+    <div id="digitalClock">00:00:00</div>
+  </section>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('pt-BR', { hour12: false });
+      document.getElementById('digitalClock').textContent = time;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
+
+</body>
+</html>

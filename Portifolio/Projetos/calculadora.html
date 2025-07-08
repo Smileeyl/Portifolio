@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculadora Moderna Organizada</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 1rem;
+    }
+    #calculator {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      max-width: 360px;
+      width: 100%;
+      padding: 1.5rem;
+    }
+    #display {
+      background: #e5e7eb;
+      border-radius: 8px;
+      padding: 1rem;
+      font-size: 2rem;
+      text-align: right;
+      margin-bottom: 1rem;
+      min-height: 2.5rem;
+      overflow-x: auto;
+    }
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+    .buttons button {
+      font-size: 1.5rem;
+      padding: 1rem;
+      border: none;
+      border-radius: 8px;
+      background: #e0e0e0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .buttons button:hover {
+      background: #d4d4d4;
+    }
+    .btn-equals {
+      background: #4338ca;
+      color: #fff;
+    }
+    .btn-equals:hover {
+      background: #4338ca;
+    }
+    .btn-clear {
+      grid-column: span 4;
+      background: #ef4444;
+      color: #fff;
+    }
+    .btn-clear:hover {
+      background: #dc2626;
+    }
+    @media (max-width: 480px) {
+      #calculator {
+        padding: 1rem;
+      }
+      #display {
+        font-size: 1.5rem;
+      }
+      .buttons button {
+        font-size: 1.25rem;
+        padding: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section id="calculator">
+    <div id="display">0</div>
+    <div class="buttons">
+      <button data-key="1">1</button>
+      <button data-key="2">2</button>
+      <button data-key="3">3</button>
+      <button data-key="+">+</button>
+
+      <button data-key="4">4</button>
+      <button data-key="5">5</button>
+      <button data-key="6">6</button>
+      <button data-key="-">-</button>
+
+      <button data-key="7">7</button>
+      <button data-key="8">8</button>
+      <button data-key="9">9</button>
+      <button data-key="*">×</button>
+
+      <button data-key="0">0</button>
+      <button data-key=".">.</button>
+      <button class="btn-equals" data-key="=">=</button>
+      <button data-key="/">÷</button>
+
+      <button class="btn-clear" data-key="C">C</button>
+    </div>
+  </section>
+
+  <script>
+    const display = document.getElementById('display');
+    const buttons = document.querySelector('.buttons');
+
+    buttons.addEventListener('click', (e) => {
+      if (!e.target.matches('button')) return;
+      const key = e.target.getAttribute('data-key');
+      if (key === 'C') return clearDisplay();
+      if (key === '=') return calculate();
+      append(key);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      const validKeys = ['0','1','2','3','4','5','6','7','8','9','.','+','-','*','/','Enter','Backspace','Escape'];
+      if (!validKeys.includes(e.key)) return;
+      if (e.key === 'Enter') return calculate();
+      if (e.key === 'Backspace') return backspace();
+      if (e.key === 'Escape') return clearDisplay();
+      if (e.key === 'C') return clearDisplay();
+      append(e.key);
+    });
+
+    function append(value) {
+      if (display.textContent === '0' || display.textContent === 'Erro') {
+        display.textContent = value === '*' ? '' : value;
+      } else {
+        display.textContent += (value === '*' ? '*' : value);
+      }
+    }
+
+    function clearDisplay() {
+      display.textContent = '0';
+    }
+
+    function backspace() {
+      display.textContent = display.textContent.slice(0, -1) || '0';
+    }
+
+    function calculate() {
+      try {
+        const expression = display.textContent.replace(/×/g, '*').replace(/÷/g, '/');
+        const result = eval(expression);
+        display.textContent = result;
+      } catch {
+        display.textContent = 'Erro';
+      }
+    }
+  </script>
+
+</body>
+</html>

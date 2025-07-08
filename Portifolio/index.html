@@ -1,0 +1,170 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <!-- Meta Tags -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de Pedro Paulo, Desenvolvedor Front-End Júnior focado em interfaces elegantes, performance e acessibilidade.">
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico">
+
+  <!-- Titulo -->
+  <title>Pedro Paulo | Portfólio</title>
+
+  <!-- Fontes e Estilos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- ===== Cabeçalho e Navegação ===== -->
+  <header class="reveal">
+    <div class="container header-container">
+      <h1 class="logo">Seja bem-vindo ao meu Portfólio!</h1>
+      <nav>
+        <ul class="nav-list">
+          <li><a href="#inicio"><i data-feather="home"></i> Início</a></li>
+          <li><a href="#sobre"><i data-feather="user"></i> Sobre</a></li>
+          <li><a href="#habilidades"><i data-feather="layers"></i> Habilidades</a></li>
+          <li><a href="#projetos"><i data-feather="grid"></i> Projetos</a></li>
+          <li><a href="#contato"><i data-feather="mail"></i> Contato</a></li>
+          <li><button id="toggle-tema" aria-label="Alternar tema"></button></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Main ===== -->
+  <main>
+
+    <!-- Sessão Hero -->
+    <section id="inicio" class="hero reveal">
+      <div class="container hero-content">
+        <div class="text">
+          <h2>Olá, eu sou <span>Pedro Paulo</span></h2>
+          <p>Desenvolvedor Front-End Júnior criando interfaces elegantes e responsivas.</p>
+          <div class="btn-group">
+            <a class="btn outline" href="https://github.com/Smileeyl" target="_blank">
+              <i data-feather="github"></i> GitHub
+            </a>
+            <a class="btn outline" href="https://www.linkedin.com/in/pedro-paulo-rodrigues-dos-santos-804b28260/" target="_blank">
+              <i data-feather="linkedin"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+        <div class="image">
+          <img src="hero.webp" alt="Foto Pedro Paulo" loading="lazy">
+        </div>
+      </div>
+    </section>
+
+    <!-- Sessão Sobre Mim -->
+    <section id="sobre" class="section reveal">
+      <div class="container">
+        <h2>Sobre Mim</h2>
+        <p>
+          Estudante de Engenharia de Software (4º período) em Goiânia. Foco em HTML, CSS e JavaScript.
+          Buscando minha primeira oportunidade como Front-End.
+        </p>
+      </div>
+    </section>
+
+    <!-- Sessão Skills -->
+    <section id="habilidades" class="section bg-light reveal">
+      <div class="container">
+        <h2>Habilidades</h2>
+        <ul class="skills-list">
+          <li><i data-feather="html5"></i> HTML5</li>
+          <li><i data-feather="css3"></i> CSS3</li>
+          <li><i data-feather="javascript"></i> JavaScript</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Sessão Projetos -->
+    <section id="projetos" class="section reveal">
+      <div class="container">
+        <h2>Projetos</h2>
+        <div class="projects-grid">
+          <!-- Exemplo de um Card de Projetos -->
+          <div class="project-card reveal">
+            <img src="projeto1.avif" alt="Projeto 1" loading="lazy">
+            <div class="project-info">
+              <h3>Projeto 1</h3>
+              <p>Descrição breve destacando tecnologias.</p>
+              <div class="links">
+                <a href="#" target="_blank"><i data-feather="external-link"></i> Online</a>
+                <a href="#" target="_blank"><i data-feather="code"></i> Código</a>
+              </div>
+            </div>
+          </div>
+          <!-- Adicionar mais Projetos se houver -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Sessão de Contato -->
+    <section id="contato" class="section bg-light reveal">
+      <div class="container">
+        <h2>Contato</h2>
+        <form class="contact-form" action="#" method="POST">
+          <input type="text" name="nome" placeholder="Nome" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <textarea name="mensagem" rows="4" placeholder="Mensagem" required></textarea>
+          <button type="submit" class="btn solid"><i data-feather="send"></i> Enviar</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== Pé da Página ===== -->
+  <footer class="reveal">
+    <div class="container footer-container">
+      <p>&copy; 2025 Pedro Paulo Rodrigues dos Santos. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <!-- Feather Icons -->
+  <script defer src="https://unpkg.com/feather-icons"></script>
+  <script defer>
+    // Troca de tema com persistência
+    const toggleBtn = document.getElementById('toggle-tema');
+    // Salvar tema aplicado
+    const savedTheme = localStorage.getItem('tema');
+    if (savedTheme) {
+      document.documentElement.classList.add(savedTheme);
+      toggleBtn.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+    } else {
+      toggleBtn.textContent = '🌙';
+    }
+    
+    toggleBtn.addEventListener('click', () => {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('tema', isDark ? 'dark' : 'light');
+      toggleBtn.textContent = isDark ? '☀️' : '🌙';
+    });
+
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Replace Feather icons
+    document.addEventListener('DOMContentLoaded', () => {
+      feather.replace({ 'stroke-width': 1 });
+    });
+  </script>
+</body>
+</html>
